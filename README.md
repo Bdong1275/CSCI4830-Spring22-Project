@@ -1,4 +1,4 @@
-#Currently
+# Currently
 * we still need the circles
 * the sequence animation (in Game.js) is happening too fast
 * still need to store user input and validate win condition or lose condition
