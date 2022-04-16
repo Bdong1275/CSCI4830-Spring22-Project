@@ -16,6 +16,7 @@
         import SquareGameObject from "./SquareGameObject.js";
         import Input from "./Input.js";
         import Constants from "./Constants.js";
+        import Game from "./Game.js";
 
         let { canvas, ctx } = getCanvas();
 
@@ -26,34 +27,14 @@
         ctx.fillStyle = "white"
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-        //right panel
-        Constants.rightGameObjects.push(new SquareGameObject(810, 10, 200, 200));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 10, 200, 200));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 10, 200, 200));
+       
 
-        Constants.rightGameObjects.push(new SquareGameObject(810, 220, 200, 200));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 220, 200, 200));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 220, 200, 200));
-
-        Constants.rightGameObjects.push(new SquareGameObject(810, 430, 200, 200));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 430, 200, 200));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 430, 200, 200));
+        Game.createGrid();
+        Game.animateSequence(ctx);
 
         function tick() {
-            update();
-            updateRightPanel();
-        }
-
-        function update() {
-            for (let gameObject of Constants.rightGameObjects) {
-                gameObject.draw(ctx, "gray");
-            }
-        }
-
-        function updateRightPanel() {
-            for (let gameObject of Constants.rightGameObjects) {
-                gameObject.update(ctx);
-            }
+            Game.update(ctx);
+            Game.updateRightPanel(ctx);
         }
 
         setInterval(tick, 10);
