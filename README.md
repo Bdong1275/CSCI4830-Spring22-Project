@@ -9,8 +9,8 @@ Reactor Game Project
 * Project set up
 # week 2
 * create prototype
-* * playable
-* * no sound or special color settings
+** playable
+** no sound or special color settings
 # week 3
 # week 4
 # week 5
