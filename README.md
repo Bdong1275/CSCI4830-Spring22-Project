@@ -6,7 +6,7 @@ Reactor Game Project
 * Isaiah Plank 
 * Sreeharsha Morampudi 
 # week 1
-*Project set up
+* Project set up
 # week 2
 # week 3
 # week 4

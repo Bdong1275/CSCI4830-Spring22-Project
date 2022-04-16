@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Among Us | Start Reactor Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="canv"></canvas>
+
+    <script type="module">
+        "use strict"
+
+        import { getCanvas } from "./script.js";
+        import SquareGameObject from "./SquareGameObject.js";
+        import Input from "./Input.js";
+        import Constants from "./Constants.js";
+
+        let { canvas, ctx } = getCanvas();
+
+        document.addEventListener("mousemove", Input.mouseMove);
+        document.addEventListener("click", Input.mouseClick);
+
+
+        ctx.fillStyle = "white"
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        //right panel
+        Constants.rightGameObjects.push(new SquareGameObject(810, 10, 200, 200));
+        Constants.rightGameObjects.push(new SquareGameObject(1020, 10, 200, 200));
+        Constants.rightGameObjects.push(new SquareGameObject(1230, 10, 200, 200));
+
+        Constants.rightGameObjects.push(new SquareGameObject(810, 220, 200, 200));
+        Constants.rightGameObjects.push(new SquareGameObject(1020, 220, 200, 200));
+        Constants.rightGameObjects.push(new SquareGameObject(1230, 220, 200, 200));
+
+        Constants.rightGameObjects.push(new SquareGameObject(810, 430, 200, 200));
+        Constants.rightGameObjects.push(new SquareGameObject(1020, 430, 200, 200));
+        Constants.rightGameObjects.push(new SquareGameObject(1230, 430, 200, 200));
+
+        function tick() {
+            update();
+            updateRightPanel();
+        }
+
+        function update() {
+            for (let gameObject of Constants.rightGameObjects) {
+                gameObject.draw(ctx, "gray");
+            }
+        }
+
+        function updateRightPanel() {
+            for (let gameObject of Constants.rightGameObjects) {
+                gameObject.update(ctx);
+            }
+        }
+
+        setInterval(tick, 10);
+    </script>
+</body>
+
+</html>
