@@ -1,4 +1,6 @@
+import CircleGameObject from "./CircleGameObject.js";
 import Constants from "./Constants.js";
+import Input from "./Input.js";
 import SquareGameObject from "./SquareGameObject.js";
 
 class Game {
@@ -8,43 +10,66 @@ class Game {
 
     static createGrid() {
         //left panel
-        Constants.leftGameObjects.push(new SquareGameObject(10, 10, 200, 200, 1));
-        Constants.leftGameObjects.push(new SquareGameObject(220, 10, 200, 200, 2));
-        Constants.leftGameObjects.push(new SquareGameObject(430, 10, 200, 200, 3));
+        Constants.leftGameObjects.push(new SquareGameObject(10, 100, 200, 200, 1));
+        Constants.leftGameObjects.push(new SquareGameObject(220, 100, 200, 200, 2));
+        Constants.leftGameObjects.push(new SquareGameObject(430, 100, 200, 200, 3));
 
-        Constants.leftGameObjects.push(new SquareGameObject(10, 220, 200, 200, 4));
-        Constants.leftGameObjects.push(new SquareGameObject(220, 220, 200, 200, 5));
-        Constants.leftGameObjects.push(new SquareGameObject(430, 220, 200, 200, 6));
+        Constants.leftGameObjects.push(new SquareGameObject(10, 310, 200, 200, 4));
+        Constants.leftGameObjects.push(new SquareGameObject(220, 310, 200, 200, 5));
+        Constants.leftGameObjects.push(new SquareGameObject(430, 310, 200, 200, 6));
 
-        Constants.leftGameObjects.push(new SquareGameObject(10, 430, 200, 200, 7));
-        Constants.leftGameObjects.push(new SquareGameObject(220, 430, 200, 200, 8));
-        Constants.leftGameObjects.push(new SquareGameObject(430, 430, 200, 200, 9));
+        Constants.leftGameObjects.push(new SquareGameObject(10, 520, 200, 200, 7));
+        Constants.leftGameObjects.push(new SquareGameObject(220, 520, 200, 200, 8));
+        Constants.leftGameObjects.push(new SquareGameObject(430, 520, 200, 200, 9));
 
         //right panel
-        Constants.rightGameObjects.push(new SquareGameObject(810, 10, 200, 200, -1));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 10, 200, 200, -2));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 10, 200, 200, -3));
+        Constants.rightGameObjects.push(new SquareGameObject(810, 100, 200, 200, -1));
+        Constants.rightGameObjects.push(new SquareGameObject(1020, 100, 200, 200, -2));
+        Constants.rightGameObjects.push(new SquareGameObject(1230, 100, 200, 200, -3));
 
-        Constants.rightGameObjects.push(new SquareGameObject(810, 220, 200, 200, -4));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 220, 200, 200, -5));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 220, 200, 200, -6));
+        Constants.rightGameObjects.push(new SquareGameObject(810, 310, 200, 200, -4));
+        Constants.rightGameObjects.push(new SquareGameObject(1020, 310, 200, 200, -5));
+        Constants.rightGameObjects.push(new SquareGameObject(1230, 310, 200, 200, -6));
 
-        Constants.rightGameObjects.push(new SquareGameObject(810, 430, 200, 200, -7));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 430, 200, 200, -8));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 430, 200, 200, -9));
+        Constants.rightGameObjects.push(new SquareGameObject(810, 520, 200, 200, -7));
+        Constants.rightGameObjects.push(new SquareGameObject(1020, 520, 200, 200, -8));
+        Constants.rightGameObjects.push(new SquareGameObject(1230, 520, 200, 200, -9));
+
+        //Circles
+        let startX = 910;
+        Constants.circleGameObjects.push(new CircleGameObject(startX, 50, 30, "Circle1"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle2"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle3"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle4"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle5"));
     }
-    static update(ctx) {
+    static draw(ctx) {
         for (let gameObject of Constants.rightGameObjects) {
             gameObject.draw(ctx, "gray", "black");
         }
         for (let gameObject of Constants.leftGameObjects) {
             gameObject.draw(ctx, "black", "gray");
         }
+        for (let gameObject of Constants.circleGameObjects) {
+            gameObject.draw(ctx, "white", "black");
+        }
+
     }
 
     static updateRightPanel(ctx) {
         for (let gameObject of Constants.rightGameObjects) {
             gameObject.update(ctx);
+        }
+    }
+
+    //just to show that circle update works
+    static updateCircle(ctx) {
+        for (let gameObject of Constants.circleGameObjects) {
+            if (Input.inCollisionHover(gameObject, ctx)) {
+                gameObject.update(ctx);
+            }else {
+                gameObject.draw(ctx, "white", "black");
+            }
         }
     }
 
