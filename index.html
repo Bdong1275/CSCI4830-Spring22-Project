@@ -28,13 +28,13 @@
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
        
-
         Game.createGrid();
         Game.animateSequence(ctx);
+        Game.draw(ctx);
 
         function tick() {
-            Game.update(ctx);
             Game.updateRightPanel(ctx);
+            Game.updateCircle(ctx);
         }
 
         setInterval(tick, 10);
