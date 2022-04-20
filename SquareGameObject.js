@@ -25,11 +25,10 @@ class SquareGameObject extends GameObject {
         ctx.stroke();
     }
     update(ctx) {
+        this.draw(ctx, Constants.btnColor, "black");
 
-        if (this.x < Input.mouse.clickX && Input.mouse.clickX < this.x + Constants.size &&
-            this.y < Input.mouse.clickY && Input.mouse.clickY < this.y + Constants.size) {
-                this.draw(ctx, Constants.btnColor, "black");
-        }
+        // if (Input.inCollisionSquare(this)) {
+        // }
 
     }
 }

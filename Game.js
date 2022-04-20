@@ -44,6 +44,7 @@ class Game {
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle5"));
     }
     static draw(ctx) {
+        //initial board
         for (let gameObject of Constants.rightGameObjects) {
             gameObject.draw(ctx, "gray", "black");
         }
@@ -57,15 +58,16 @@ class Game {
     }
 
     static updateRightPanel(ctx) {
-        for (let gameObject of Constants.rightGameObjects) {
-            gameObject.update(ctx);
+        for (let sqaureNum of Game.userInput) {
+            let temp = Constants.rightGameObjects.find(object=>object.number == (sqaureNum * -1));
+            temp.update(ctx);
         }
     }
 
     //just to show that circle update works
     static updateCircle(ctx) {
         for (let gameObject of Constants.circleGameObjects) {
-            if (Input.inCollisionHover(gameObject, ctx)) {
+            if (Input.inCollisionHover(gameObject)) {
                 gameObject.update(ctx);
             }else {
                 gameObject.draw(ctx, "white", "black");
@@ -84,6 +86,15 @@ class Game {
                 }
             }
         }
+    }
+
+    static addInput(ctx) {
+        for (let gameObject of Constants.rightGameObjects) {
+            if (Input.inCollisionSquare(gameObject)) {
+                Game.userInput.push(gameObject.number * -1);
+            }
+        }
+        console.log(Game.userInput);
     }
 
 }
