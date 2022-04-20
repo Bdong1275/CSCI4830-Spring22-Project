@@ -9,11 +9,6 @@ class Input {
         clickY: 0
     }
 
-    static mouseClick() {
-        Input.mouse.clickX = Input.mouse.x;
-        Input.mouse.clickY = Input.mouse.y;
-    }
-
     static mouseMove(e) {
         Input.mouse.x = e.clientX;
         Input.mouse.y = e.clientY;
@@ -21,7 +16,7 @@ class Input {
     }
 
     //mouse - circle
-    static inCollisionHover(object, ctx) {
+    static inCollisionHover(object) {
         
         let x1 = object.x;
         let y1 = object.y;
@@ -34,6 +29,17 @@ class Input {
 
         if (Math.sqrt(x + y) <= object.r) {
             return true;
+        }
+    }
+
+    //mouse - square
+    static inCollisionSquare(square) {
+
+        if (square.x < Input.mouse.x && Input.mouse.x < square.x + square.w &&
+            square.y < Input.mouse.y && Input.mouse.y < square.y + square.h) {
+                return true;
+        }else {
+            return false;
         }
     }
 }

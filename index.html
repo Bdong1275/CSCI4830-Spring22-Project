@@ -21,7 +21,7 @@
         let { canvas, ctx } = getCanvas();
 
         document.addEventListener("mousemove", Input.mouseMove);
-        document.addEventListener("click", Input.mouseClick);
+        document.addEventListener("click", Game.addInput);
 
 
         ctx.fillStyle = "white"
