@@ -46,7 +46,6 @@ class Game {
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle5"));
 
         for (let i=0; i<Game.level; i++) {
-            // Game.sequence.push(Math.floor(Math.random() * (10 - 1) + 1));
             Game.sequence.push(1);
         }
     }
@@ -95,7 +94,7 @@ class Game {
         }
     }
 
-    static addInput(ctx) {
+    static addInput() {
         for (let gameObject of Constants.rightGameObjects) {
             if (Input.inCollisionSquare(gameObject)) {
                 Game.userInput.push(gameObject.number * -1);
@@ -104,10 +103,10 @@ class Game {
         console.log(Game.userInput);
     }
 
-    static checkInput(ctx) {
-        let count = 0;
-        if (Game.userInput.length != 0) {
-            for (let i=0; i<Game.userInput.length; i++) {
+    static checkInput() {
+        for (let i=0; i<Game.level; i++) {
+            let count = 0;
+            if (Game.userInput.length > 0) {
                 if (Game.userInput[i] == Game.sequence[i]) {
                     count++;
                     if (count == Game.level) {
@@ -122,8 +121,8 @@ class Game {
 
     static showMessage(ctx) {
         ctx.fillStyle = "green";
-        ctx.font = "300px Arial";
-        ctx.fillText("You " + Game.gameStatus, 100, 500); 
+        ctx.font = "300px Arial"
+        ctx.fillText("You " + Game.gameStatus, 200, 500);
     }
 
 }
