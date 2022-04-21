@@ -27,17 +27,26 @@
         ctx.fillStyle = "white"
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-       
-        Game.createGrid();
-        Game.animateSequence(ctx);
-        Game.draw(ctx);
-
-        function tick() {
-            Game.updateRightPanel(ctx);
-            Game.updateCircle(ctx);
+        if (Game.gameStatus = "Idle") {
+            Game.createGrid();
+            Game.draw(ctx);
+            Game.animateSequence(ctx);
         }
 
-        setInterval(tick, 10);
+        if (Game.gameStatus = "Playing") {
+            setInterval(tick, 10);
+        }
+        
+        function tick() {
+            if (Game.gameStatus != "Playing") {
+                Game.showMessage(ctx);
+            }else {
+                Game.updateRightPanel(ctx);
+                Game.updateCircle(ctx);
+                Game.checkInput();
+            }
+        }
+
     </script>
 </body>
 

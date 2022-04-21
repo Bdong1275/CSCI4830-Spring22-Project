@@ -7,8 +7,10 @@ class Game {
     static level = 1;
     static sequence = [];
     static userInput = [];
+    static gameStatus = "Idle";
 
     static createGrid() {
+        Game.gameStatus = "Playing";
         //left panel
         Constants.leftGameObjects.push(new SquareGameObject(10, 100, 200, 200, 1));
         Constants.leftGameObjects.push(new SquareGameObject(220, 100, 200, 200, 2));
@@ -42,6 +44,10 @@ class Game {
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle3"));
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle4"));
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle5"));
+
+        for (let i=0; i<Game.level; i++) {
+            Game.sequence.push(1);
+        }
     }
     static draw(ctx) {
         //initial board
@@ -88,13 +94,35 @@ class Game {
         }
     }
 
-    static addInput(ctx) {
+    static addInput() {
         for (let gameObject of Constants.rightGameObjects) {
             if (Input.inCollisionSquare(gameObject)) {
                 Game.userInput.push(gameObject.number * -1);
             }
         }
         console.log(Game.userInput);
+    }
+
+    static checkInput() {
+        for (let i=0; i<Game.level; i++) {
+            let count = 0;
+            if (Game.userInput.length > 0) {
+                if (Game.userInput[i] == Game.sequence[i]) {
+                    count++;
+                    if (count == Game.level) {
+                        Game.gameStatus = "Won";
+                    }
+                }else {
+                    Game.gameStatus = "Lost";
+                }
+            }
+        }
+    }
+
+    static showMessage(ctx) {
+        ctx.fillStyle = "green";
+        ctx.font = "300px Arial"
+        ctx.fillText("You " + Game.gameStatus, 200, 500);
     }
 
 }
