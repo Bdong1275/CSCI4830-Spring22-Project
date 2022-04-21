@@ -4,10 +4,11 @@ import Input from "./Input.js";
 import SquareGameObject from "./SquareGameObject.js";
 
 class Game {
-    static level = 1; //level-sequence = 1-1 2-2 3-3 4-4 5-5 6-6 7-7 ...
+    static level = 3;
     static sequence = [];
     static userInput = [];
     static gameStatus = "Idle";
+    static current = -1;
 
     static createGrid() {
         Game.gameStatus = "Playing";
@@ -45,8 +46,11 @@ class Game {
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle4"));
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle5"));
 
-        for (let i=0; i<Game.level; i++) {
+        for (let i = 0; i < 1; i++) {
             Game.sequence.push(1);
+            Game.sequence.push(2);
+            Game.sequence.push(3);
+
         }
     }
     static draw(ctx) {
@@ -64,10 +68,15 @@ class Game {
     }
 
     static updateRightPanel(ctx) {
-        for (let sqaureNum of Game.userInput) {
-            let temp = Constants.rightGameObjects.find(object=>object.number == (sqaureNum * -1));
-            temp.update(ctx);
+        for (let gameObject of Constants.rightGameObjects) {
+            gameObject.draw(ctx, "gray", "black");
         }
+        if (Game.current != -1) {
+            let temp = Constants.rightGameObjects.find(object => object.number == (Game.current * -1));
+            temp.update(ctx);
+
+        }
+
     }
 
     //just to show that circle update works
@@ -75,7 +84,7 @@ class Game {
         for (let gameObject of Constants.circleGameObjects) {
             if (Input.inCollisionHover(gameObject)) {
                 gameObject.update(ctx);
-            }else {
+            } else {
                 gameObject.draw(ctx, "white", "black");
             }
         }
@@ -100,21 +109,20 @@ class Game {
                 Game.userInput.push(gameObject.number * -1);
             }
         }
+        Game.current = Game.userInput[Game.userInput.length - 1];
         console.log(Game.userInput);
     }
 
     static checkInput() {
-        for (let i=0; i<Game.level; i++) {
-            let count = 0;
-            if (Game.userInput.length > 0) {
-                if (Game.userInput[i] == Game.sequence[i]) {
-                    count++;
-                    if (count == Game.level) {
-                        Game.gameStatus = "Won";
-                    }
-                }else {
-                    Game.gameStatus = "Lost";
+        let count = 0;
+        for (let i = 0; i < Game.userInput.length; i++) {
+            if (Game.userInput[i] == Game.sequence[i]) {
+                count++;
+                if (count == Game.level) {
+                    Game.gameStatus = "Won";
                 }
+            } else {
+                Game.gameStatus = "Lost";
             }
         }
     }

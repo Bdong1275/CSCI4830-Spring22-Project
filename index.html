@@ -8,7 +8,7 @@
 
 <body>
     <canvas id="canv"></canvas>
-
+ 
     <script type="module">
         "use strict"
 
@@ -36,9 +36,9 @@
             setInterval(tick, 100);
         }
         if (Game.gameStatus = "Playing") {
-            setInterval(tick, 10);
+            setInterval(tick, 1000);
         }
-        
+
         function tick() {
             if (Game.gameStatus != "Playing") {
                 Game.showMessage(ctx);
