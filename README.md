@@ -1,4 +1,4 @@
-# Currently
+# Currently - week 2
 * we still need the circles (finished)
 * the sequence animation (in Game.js) is happening too fast (fixed)
 * still need to store user input(completed), validate win condition or lose condition(completed), and connect it to the circles(completed)
