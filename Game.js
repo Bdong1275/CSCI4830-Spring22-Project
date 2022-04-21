@@ -4,11 +4,13 @@ import Input from "./Input.js";
 import SquareGameObject from "./SquareGameObject.js";
 
 class Game {
-    static level = 1;
+    static level = 1; //level-sequence = 1-1 2-2 3-3 4-4 5-5 6-6 7-7 ...
     static sequence = [];
     static userInput = [];
+    static gameStatus = "Idle";
 
     static createGrid() {
+        Game.gameStatus = "Playing";
         //left panel
         Constants.leftGameObjects.push(new SquareGameObject(10, 100, 200, 200, 1));
         Constants.leftGameObjects.push(new SquareGameObject(220, 100, 200, 200, 2));
@@ -42,6 +44,11 @@ class Game {
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle3"));
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle4"));
         Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle5"));
+
+        for (let i=0; i<Game.level; i++) {
+            // Game.sequence.push(Math.floor(Math.random() * (10 - 1) + 1));
+            Game.sequence.push(1);
+        }
     }
     static draw(ctx) {
         //initial board
@@ -95,6 +102,28 @@ class Game {
             }
         }
         console.log(Game.userInput);
+    }
+
+    static checkInput(ctx) {
+        let count = 0;
+        if (Game.userInput.length != 0) {
+            for (let i=0; i<Game.userInput.length; i++) {
+                if (Game.userInput[i] == Game.sequence[i]) {
+                    count++;
+                    if (count == Game.level) {
+                        Game.gameStatus = "Won";
+                    }
+                }else {
+                    Game.gameStatus = "Lost";
+                }
+            }
+        }
+    }
+
+    static showMessage(ctx) {
+        ctx.fillStyle = "green";
+        ctx.font = "300px Arial";
+        ctx.fillText("You " + Game.gameStatus, 100, 500); 
     }
 
 }
