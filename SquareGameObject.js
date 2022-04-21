@@ -24,6 +24,9 @@ class SquareGameObject extends GameObject {
         ctx.fill();
         ctx.stroke();
     }
+    test() {
+        console.log(2);
+    }
     update(ctx) {
         this.draw(ctx, Constants.btnColor, "black");
 
