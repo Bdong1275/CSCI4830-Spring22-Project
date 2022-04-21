@@ -90,17 +90,24 @@ class Game {
         }
     }
 
-    //seqeunce happeneing too fast, doesn't show on screen
     static animateSequence(ctx) {
-
-        for (let s of Game.sequence) {
-            for (let gameObject of Constants.leftGameObjects) {
-                if (s == gameObject.number) {
-                    setTimeout(gameObject.draw(ctx, "blue", "gray"), 1000);
-                    setTimeout(gameObject.draw(ctx, "black", "gray"), 4000);
+        //This function makes it go to sleep and it works
+        let sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+        }
+        let doSomething = async() => {
+            for (let s of Game.sequence) {
+                for (let gameObject of Constants.leftGameObjects) {
+                    if (s == gameObject.number) {
+                        await sleep(2000);
+                        gameObject.draw(ctx, "blue", "gray");
+                        await sleep(2000);
+                        gameObject.draw(ctx, "black", "gray");
+                    }
                 }
             }
         }
+        doSomething();
     }
 
     static addInput() {
@@ -132,6 +139,7 @@ class Game {
         ctx.font = "300px Arial"
         ctx.fillText("You " + Game.gameStatus, 200, 500);
     }
+
 
 }
 
