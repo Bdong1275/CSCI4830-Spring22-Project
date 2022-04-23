@@ -10,9 +10,10 @@ class Input {
     }
 
     static mouseMove(e) {
-        Input.mouse.x = e.clientX;
-        Input.mouse.y = e.clientY;
-        // console.log(e.clientX);
+        //offset - canv positioning
+        Input.mouse.x = e.clientX - 260;
+        Input.mouse.y = e.clientY - 360;
+        // console.log(e.clientX + ", " + e.clientY);
     }
 
     //mouse - circle

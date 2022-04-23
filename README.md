@@ -21,3 +21,5 @@ Reactor Game Project
 # week 5
 # week 6
 # week 7
+# References
+Sounds, images, and ideas from https://github.com/RahulSahOfficial/start_reactor

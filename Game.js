@@ -9,43 +9,45 @@ class Game {
     static userInput = [];
     static gameStatus = "Idle";
     static current = -1;
+    static inputCount = 0;
 
     static createGrid() {
         Game.gameStatus = "Playing";
         //left panel
-        Constants.leftGameObjects.push(new SquareGameObject(10, 100, 200, 200, 1));
-        Constants.leftGameObjects.push(new SquareGameObject(220, 100, 200, 200, 2));
-        Constants.leftGameObjects.push(new SquareGameObject(430, 100, 200, 200, 3));
+        Constants.leftGameObjects.push(new SquareGameObject(50, 200, 200, 200, 1));
+        Constants.leftGameObjects.push(new SquareGameObject(260, 200, 200, 200, 2));
+        Constants.leftGameObjects.push(new SquareGameObject(470, 200, 200, 200, 3));
 
-        Constants.leftGameObjects.push(new SquareGameObject(10, 310, 200, 200, 4));
-        Constants.leftGameObjects.push(new SquareGameObject(220, 310, 200, 200, 5));
-        Constants.leftGameObjects.push(new SquareGameObject(430, 310, 200, 200, 6));
+        Constants.leftGameObjects.push(new SquareGameObject(50, 410, 200, 200, 4));
+        Constants.leftGameObjects.push(new SquareGameObject(260, 410, 200, 200, 5));
+        Constants.leftGameObjects.push(new SquareGameObject(470, 410, 200, 200, 6));
 
-        Constants.leftGameObjects.push(new SquareGameObject(10, 520, 200, 200, 7));
-        Constants.leftGameObjects.push(new SquareGameObject(220, 520, 200, 200, 8));
-        Constants.leftGameObjects.push(new SquareGameObject(430, 520, 200, 200, 9));
+        Constants.leftGameObjects.push(new SquareGameObject(50, 620, 200, 200, 7));
+        Constants.leftGameObjects.push(new SquareGameObject(260, 620, 200, 200, 8));
+        Constants.leftGameObjects.push(new SquareGameObject(470, 620, 200, 200, 9));
 
         //right panel
-        Constants.rightGameObjects.push(new SquareGameObject(810, 100, 200, 200, -1));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 100, 200, 200, -2));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 100, 200, 200, -3));
+        Constants.rightGameObjects.push(new SquareGameObject(850, 200, 200, 200, -1));
+        Constants.rightGameObjects.push(new SquareGameObject(1060, 200, 200, 200, -2));
+        Constants.rightGameObjects.push(new SquareGameObject(1270, 200, 200, 200, -3));
 
-        Constants.rightGameObjects.push(new SquareGameObject(810, 310, 200, 200, -4));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 310, 200, 200, -5));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 310, 200, 200, -6));
+        Constants.rightGameObjects.push(new SquareGameObject(850, 410, 200, 200, -4));
+        Constants.rightGameObjects.push(new SquareGameObject(1060, 410, 200, 200, -5));
+        Constants.rightGameObjects.push(new SquareGameObject(1270, 410, 200, 200, -6));
 
-        Constants.rightGameObjects.push(new SquareGameObject(810, 520, 200, 200, -7));
-        Constants.rightGameObjects.push(new SquareGameObject(1020, 520, 200, 200, -8));
-        Constants.rightGameObjects.push(new SquareGameObject(1230, 520, 200, 200, -9));
+        Constants.rightGameObjects.push(new SquareGameObject(850, 620, 200, 200, -7));
+        Constants.rightGameObjects.push(new SquareGameObject(1060, 620, 200, 200, -8));
+        Constants.rightGameObjects.push(new SquareGameObject(1270, 620, 200, 200, -9));
 
         //Circles
-        let startX = 910;
-        Constants.circleGameObjects.push(new CircleGameObject(startX, 50, 30, "Circle1"));
-        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle2"));
-        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle3"));
-        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle4"));
-        Constants.circleGameObjects.push(new CircleGameObject(startX += 100, 50, 30, "Circle5"));
+        let startX = 950;
+        Constants.circleGameObjects.push(new CircleGameObject(startX, 150, 30, "Circle1"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 105, 150, 30, "Circle2"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 105, 150, 30, "Circle3"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 105, 150, 30, "Circle4"));
+        Constants.circleGameObjects.push(new CircleGameObject(startX += 105, 150, 30, "Circle5"));
 
+        //game sequence
         for (let i = 0; i < 1; i++) {
             Game.sequence.push(1);
             Game.sequence.push(2);
@@ -67,14 +69,14 @@ class Game {
 
     }
 
+    //show light up of buttons on right grid
     static updateRightPanel(ctx) {
         for (let gameObject of Constants.rightGameObjects) {
             gameObject.draw(ctx, "gray", "black");
         }
-        if (Game.current != -1) {
+        if (Game.current != -1) {//the most recent user input
             let temp = Constants.rightGameObjects.find(object => object.number == (Game.current * -1));
             temp.update(ctx);
-
         }
 
     }
@@ -90,6 +92,7 @@ class Game {
         }
     }
 
+    //sequence animation of left grid
     static animateSequence(ctx) {
         //This function makes it go to sleep and it works
         let sleep = (milliseconds) => {
@@ -99,9 +102,10 @@ class Game {
             for (let s of Game.sequence) {
                 for (let gameObject of Constants.leftGameObjects) {
                     if (s == gameObject.number) {
-                        await sleep(2000);
+                        await sleep(1000);
                         gameObject.draw(ctx, "blue", "gray");
-                        await sleep(2000);
+                        Constants.clickSound.play();
+                        await sleep(500);
                         gameObject.draw(ctx, "black", "gray");
                     }
                 }
@@ -116,10 +120,18 @@ class Game {
                 Game.userInput.push(gameObject.number * -1);
             }
         }
-        Game.current = Game.userInput[Game.userInput.length - 1];
-        console.log(Game.userInput);
+        Game.current = Game.userInput[Game.inputCount];
+        if (Game.current == Game.sequence[Game.inputCount]) {
+            Constants.clickSound.play();
+        }else {
+            Constants.wrongSound.play();
+            Game.gameStatus = "Lost";
+        }
+        Game.inputCount++;
+        // console.log(Game.userInput);
     }
 
+    //win/lost validation
     static checkInput() {
         let count = 0;
         for (let i = 0; i < Game.userInput.length; i++) {
@@ -127,6 +139,7 @@ class Game {
                 count++;
                 if (count == Game.level) {
                     Game.gameStatus = "Won";
+                    Constants.levelPassedSound.play();
                 }
             } else {
                 Game.gameStatus = "Lost";
