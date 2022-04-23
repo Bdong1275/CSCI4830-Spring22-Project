@@ -1,7 +1,9 @@
-# Currently - week 2
-* we still need the circles (finished)
-* the sequence animation (in Game.js) is happening too fast (fixed)
-* still need to store user input(completed), validate win condition or lose condition(completed), and connect it to the circles(completed)
+# Currently - week 3
+* add sound (complete)
+* add background image (partial-blurry image)
+* add sql and update animation sequence (INCOMPLETE)
+* update win/lost condition after adding sql (INCOMPLETE)
+* incorrect offset (mouse) for canvas repositioning in internet explorer (INCOMPLETE)
 
 # CSCI4830-Spring22-Project
 Reactor Game Project
@@ -17,11 +19,15 @@ Reactor Game Project
 * playable
 * no sound or special color settings
 # week 3
+* add sound
+* add background image
+* add sql and update animation sequence
+* update win/lost condition
 # week 4
 # week 5
 # week 6
 # week 7
 # Bugs
-* Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first
+* Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first  https://goo.gl/xX8pDD
 # References
 Sounds, images, and ideas from https://github.com/RahulSahOfficial/start_reactor
