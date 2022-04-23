@@ -21,5 +21,7 @@ Reactor Game Project
 # week 5
 # week 6
 # week 7
+# Bugs
+* Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first
 # References
 Sounds, images, and ideas from https://github.com/RahulSahOfficial/start_reactor
