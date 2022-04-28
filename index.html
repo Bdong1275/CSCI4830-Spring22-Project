@@ -4,9 +4,12 @@
 <head>
     <title>Among Us | Start Reactor Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🙂</text></svg>">
 </head>
 
 <body>
+        
     <canvas id="canv"></canvas>
  
     <script type="module">
@@ -23,9 +26,12 @@
         document.addEventListener("mousemove", Input.mouseMove);
         document.addEventListener("click", Game.addInput);
 
-
-        ctx.fillStyle = "rgb(211,211,211,1)"
+        ctx.fillStyle = "rgb(211,211,211,1)";
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        //gets username from the windows local storage
+        Constants.username = window.localStorage.getItem("username");
+        // console.log(Constants.username);
 
         if (Game.gameStatus = "Idle") {
             Game.createGrid();

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+</head>
+
+<body>
+
+    <label>Please enter a username:</label>
+    <input type="text" id="myText">
+    <button type="button" id="myButton">submit</button>
+
+    <script src="Constants.js"></script>
+
+    <script>
+
+        //solely for the purpose of fixing autoplay bug
+        document.getElementById("myButton").onclick = function () {
+
+            let username = document.getElementById("myText").value;
+
+            //stores the username in windows local storage so its not lost when redirecting
+            window.localStorage.setItem("username", username);
+            window.location.href = "index.html";
+            
+        }
+
+    </script>
+
+</body>
+
+</html>
