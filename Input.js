@@ -1,3 +1,5 @@
+import Constants from "./Constants.js";
+
 class Input {
 
     static mouse = {
@@ -11,8 +13,8 @@ class Input {
 
     static mouseMove(e) {
         //offset - canv positioning
-        Input.mouse.x = e.clientX - 260;
-        Input.mouse.y = e.clientY - 360;
+        Input.mouse.x = e.clientX - 50;
+        Input.mouse.y = e.clientY - 85;
         // console.log(e.clientX + ", " + e.clientY);
     }
 
@@ -36,6 +38,7 @@ class Input {
     //mouse - square
     static inCollisionSquare(square) {
 
+        // console.log(Input.mouse.x + ", " + Input.mouse.y)
         if (square.x < Input.mouse.x && Input.mouse.x < square.x + square.w &&
             square.y < Input.mouse.y && Input.mouse.y < square.y + square.h) {
                 return true;
@@ -43,6 +46,7 @@ class Input {
             return false;
         }
     }
+
 }
 
 export default Input;

@@ -1,5 +1,7 @@
 class Constants {
 
+    static username = "";
+
     static leftGameObjects = [];
     static rightGameObjects = [];
     static circleGameObjects = [];
