@@ -1,7 +1,8 @@
 # Currently - week 3
 * add sound (complete)
 * add background image (partial-blurry image)
-* add sql and update animation sequence (INCOMPLETE)
+* add sql (complete
+* update animation sequence (INCOMPLETE)
 * update win/lost condition after adding sql (INCOMPLETE)
 * incorrect offset (mouse) for canvas repositioning in internet explorer (INCOMPLETE)
 
@@ -38,6 +39,8 @@ Reactor Game Project
 4. run application using nodemon
 5. open website and go to localhost:3000/name, for example name = /getdata (node.js)
 # Bugs
-* Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first  https://goo.gl/xX8pDD
+1. Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first  https://goo.gl/xX8pDD
+# Bugs fixed
+1. fixed using redirection (welcome.html -> index.html) and storing variable in windows local storage.
 # References
 Sounds, images, and ideas from https://github.com/RahulSahOfficial/start_reactor
