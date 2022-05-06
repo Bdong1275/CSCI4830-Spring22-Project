@@ -7,15 +7,13 @@ class Input {
         y: 50,
         width: 0.1,
         height: 0.1,
-        clickX: 0,
-        clickY: 0
     }
 
     static mouseMove(e) {
         //offset - canv positioning
-        Input.mouse.x = e.clientX - 50;
-        Input.mouse.y = e.clientY - 85;
-        // console.log(e.clientX + ", " + e.clientY);
+        Input.mouse.x = e.clientX - Constants.cpLeft;
+        Input.mouse.y = e.clientY - Constants.cpTop;
+        console.log(e.clientX + ", " + e.clientY);
     }
 
     //mouse - circle

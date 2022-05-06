@@ -238,9 +238,11 @@ class Game {
     }
 
     static addInput() {
+        console.log(Input.mouse.x, + ", " + Input.mouse.y)
         for (let gameObject of Constants.rightGameObjects) {
             if (Input.inCollisionSquare(gameObject)) {
                 Game.userInput.push(gameObject.number * -1);
+                break;
             }
         }
         Game.current = Game.userInput[Game.inputCount];
