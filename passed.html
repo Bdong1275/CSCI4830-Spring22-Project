@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Completion page</title>
+    <link rel="stylesheet" href="passed.css">
+</head>
+
+<body>
+
+    <canvas id="canv"></canvas>
+    <div>
+        <button type="button" class="myButton" id="myButton">retry</button>
+    </div>
+
+    <script type="module">
+
+        import Constants from "./Constants.js";
+        import { getCanvas } from "./script.js";
+
+        let { canvas, ctx } = getCanvas();
+
+        let username = window.localStorage.getItem("username");
+        let gameStatus = window.localStorage.getItem("gamestatus");
+        let level = window.localStorage.getItem("level");
+
+        if (gameStatus == "Lost") {
+            Constants.wrongSound.play();
+        } else {
+            Constants.gamePassedSound.play();
+        }
+
+        ctx.fillStyle = "rgb(0,0, 255,0.5)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "green";
+        ctx.fillRect(0, 0, 100, 50);
+        ctx.fillRect(500, 0, 100, 50);
+
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText(username, canvas.width / 2 - 70, 30);
+
+        ctx.fillText("You have made it to Level: " + level, 100, 200);
+
+        document.getElementById("myButton").onclick = function () {
+            window.location.href = "welcome.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

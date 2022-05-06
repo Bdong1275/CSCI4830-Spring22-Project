@@ -6,27 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
+    <link rel="stylesheet" href="welcome.css">
 </head>
 
 <body>
 
-    <label>Please enter a username:</label>
-    <input type="text" id="myText">
-    <button type="button" id="myButton">submit</button>
-
-    <script src="Constants.js"></script>
+    <div class="text">
+        <label>Welcome</label>
+    </div>
+    <div class="img">
+        <img src="/CSCI4830-Spring22-Project/image/welcomeImage.png" alt="">
+        <p>Team Reactor</p>
+    </div>
+    <div class="text2">
+        <label>Please enter a username:</label>
+        <input type="text" id="myText">
+        <button type="button" class="myButton" id="myButton">submit</button>
+    </div>
+    
 
     <script>
 
-        //solely for the purpose of fixing autoplay bug
         document.getElementById("myButton").onclick = function () {
 
             let username = document.getElementById("myText").value;
 
-            //stores the username in windows local storage so its not lost when redirecting
+            //stores the username and sequence list in windows local storage so its not lost when redirecting
             window.localStorage.setItem("username", username);
+
             window.location.href = "index.html";
-            
+
         }
 
     </script>
