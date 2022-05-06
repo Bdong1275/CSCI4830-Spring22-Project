@@ -13,7 +13,6 @@ class Input {
         //offset - canv positioning
         Input.mouse.x = e.clientX - Constants.cpLeft;
         Input.mouse.y = e.clientY - Constants.cpTop;
-        console.log(e.clientX + ", " + e.clientY);
     }
 
     //mouse - circle
@@ -36,7 +35,6 @@ class Input {
     //mouse - square
     static inCollisionSquare(square) {
 
-        // console.log(Input.mouse.x + ", " + Input.mouse.y)
         if (square.x < Input.mouse.x && Input.mouse.x < square.x + square.w &&
             square.y < Input.mouse.y && Input.mouse.y < square.y + square.h) {
                 return true;

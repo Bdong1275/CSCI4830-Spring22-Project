@@ -29,10 +29,6 @@ class SquareGameObject extends GameObject {
     }
     update(ctx) {
         this.draw(ctx, Constants.btnColor, "black");
-
-        // if (Input.inCollisionSquare(this)) {
-        // }
-
     }
 }
 
