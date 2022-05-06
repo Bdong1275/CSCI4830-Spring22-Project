@@ -182,7 +182,6 @@ class Game {
 
     }
 
-    //just to show that circle update works
     static updateCircle(ctx) {
 
         if (Game.inputCount == 0) {
@@ -224,7 +223,6 @@ class Game {
             let min = Game.level - 1;
             let max = Game.level * 10;
             let random = Math.floor(Math.random() * (max - min) + min);
-            console.log(random);
             Game.currentSequence = Game.sequence.at(random);
             return;
         }
@@ -232,7 +230,6 @@ class Game {
         let min = (Game.level - 1) * 10;
         let max = Game.level * 10;
         let random = Math.floor(Math.random() * (max - min) + min);
-        console.log(random);
         Game.currentSequence = Game.sequence.at(random).split(":");
         return;
     }
@@ -241,6 +238,7 @@ class Game {
         for (let gameObject of Constants.rightGameObjects) {
             if (Input.inCollisionSquare(gameObject)) {
                 Game.userInput.push(gameObject.number * -1);
+                break;
             }
         }
         Game.current = Game.userInput[Game.inputCount];
@@ -250,7 +248,6 @@ class Game {
             Game.gameStatus = "Lost";
         }
         Game.inputCount++;
-        // console.log(Game.userInput);
     }
 
     //win/lost validation

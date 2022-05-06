@@ -1,11 +1,3 @@
-# Currently - week 3
-* add sound (complete)
-* add background image (partial-blurry image)
-* add sql (complete
-* update animation sequence (INCOMPLETE)
-* update win/lost condition after adding sql (INCOMPLETE)
-* incorrect offset (mouse) for canvas repositioning in internet explorer (INCOMPLETE)
-
 # CSCI4830-Spring22-Project
 Reactor Game Project
 # Team Members
@@ -25,9 +17,7 @@ Reactor Game Project
 * add sql and update animation sequence
 * update win/lost condition
 # week 4
-# week 5
-# week 6
-# week 7
+* code clean up and styling welcome and end page
 # To Run Locally (Eclipse)
 # To Run Locally (VS code)
 1. install live server extension
@@ -38,9 +28,5 @@ Reactor Game Project
 3. npm install -g nodemon
 4. run application using nodemon
 5. open website and go to localhost:3000/name, for example name = /getdata (node.js)
-# Bugs
-1. Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first  https://goo.gl/xX8pDD
-# Bugs fixed
-1. fixed using redirection (welcome.html -> index.html) and storing variable in windows local storage.
 # References
 Sounds, images, and ideas from https://github.com/RahulSahOfficial/start_reactor

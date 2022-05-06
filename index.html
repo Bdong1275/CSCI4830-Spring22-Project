@@ -37,7 +37,6 @@
 
         //gets username from the windows local storage
         Constants.username = window.localStorage.getItem("username");
-        // console.log(Constants.username);
 
         if (Game.gameStatus = "Idle") {
             Game.createGrid();
@@ -50,6 +49,9 @@
         }
 
         function tick() {
+            let canvasPosition = canvas.getBoundingClientRect();
+            Constants.cpTop = canvasPosition.top;
+            Constants.cpLeft = canvasPosition.left;
             if (Game.gameStatus == "Play Sequence") {
                 Game.animateSequence(ctx);
             } else if (Game.gameStatus == "Game Completed" || Game.gameStatus == "Lost") {

@@ -2,6 +2,9 @@ class Constants {
 
     static username = "name";
 
+    static cpLeft;
+    static cpTop;
+    
     static leftGameObjects = [];
     static rightGameObjects = [];
     static circleGameObjects = [];
