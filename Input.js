@@ -47,6 +47,10 @@ class Input {
         }
     }
 
+    static stall(milliseconds) {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+    }
+
 }
 
 export default Input;

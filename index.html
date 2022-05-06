@@ -11,7 +11,13 @@
 <body>
         
     <canvas id="canv"></canvas>
- 
+<!--  
+    <script src="script.js"></script>
+    <script src="SquareGameObject.js"></script>
+    <script src="Input.js"></script>
+    <script src="Constants.js"></script>
+    <script src="Game"></script> -->
+
     <script type="module">
         "use strict"
 
@@ -26,7 +32,7 @@
         document.addEventListener("mousemove", Input.mouseMove);
         document.addEventListener("click", Game.addInput);
 
-        ctx.fillStyle = "rgb(211,211,211,1)";
+        ctx.fillStyle = "rgb(255, 255, 255, 0.8)";
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
         //gets username from the windows local storage
@@ -36,17 +42,23 @@
         if (Game.gameStatus = "Idle") {
             Game.createGrid();
             Game.draw(ctx);
-            Game.animateSequence(ctx);
+            Game.manageText();
         }
         
-        if (Game.gameStatus = "Playing") {
+        if (Game.gameStatus != "Won") {
             setInterval(tick, 100);
         }
 
         function tick() {
-            if (Game.gameStatus != "Playing") {
+            if (Game.gameStatus == "Play Sequence") {
+                Game.animateSequence(ctx);
+            } else if (Game.gameStatus == "Game Completed" || Game.gameStatus == "Lost") {
+                window.localStorage.setItem("username", Constants.username);
+                window.localStorage.setItem("gamestatus", Game.gameStatus);
+                window.localStorage.setItem("level", Game.level);
+                window.location.href = "passed.html";
+            }else if (Game.gameStatus == "User Input") {
                 Game.showMessage(ctx);
-            }else {
                 Game.updateRightPanel(ctx);
                 Game.updateCircle(ctx);
                 Game.checkInput();
