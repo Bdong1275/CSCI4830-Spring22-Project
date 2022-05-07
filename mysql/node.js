@@ -53,7 +53,7 @@ app.get("/createdata", (req, res) => {
 });
 
 //get data
-app.get("/createdata", (req, res) => {
+app.get("/getdata", (req, res) => {
     let sql = "select * from reactor_DB";
     let query = db.query(sql, (err, result) => {
         if (err) throw err;
