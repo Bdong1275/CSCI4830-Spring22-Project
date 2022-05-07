@@ -19,6 +19,8 @@ Reactor Game Project
 # week 4
 * code clean up and styling welcome and end page
 # To Run Locally (Eclipse)
+1. download code from Github and put everything into a JS_HTML_CSS folder under the webapp folder
+2. right click welcome.html and run on server using Tomcat 7.0
 # To Run Locally (VS code)
 1. install live server extension
 2. right click html file and run on live server
